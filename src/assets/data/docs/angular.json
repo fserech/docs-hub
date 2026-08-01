@@ -1,0 +1,176 @@
+{
+  "id": "angular",
+  "name": "Angular CLI",
+  "icon": "angular",
+  "color": "#e0243e",
+  "sections": [
+    {
+      "id": "instalacion",
+      "title": "Instalación",
+      "description": "Requiere Node.js instalado. Verifica versiones y luego instala el CLI de forma global.",
+      "commands": [
+        {
+          "id": "install-1",
+          "title": "Verificar e instalar",
+          "description": "Comandos básicos de instalación",
+          "code": "$ node -v                      # versión de Node.js\n$ npm -v                       # versión de npm\n$ npm install -g @angular/cli  # instala Angular CLI global\n$ ng version                   # verifica instalación (alias: ng v)"
+        }
+      ]
+    },
+    {
+      "id": "proyecto",
+      "title": "Crear un proyecto",
+      "description": "Genera el esqueleto de una nueva aplicación.",
+      "commands": [
+        {
+          "id": "proyecto-1",
+          "title": "ng new",
+          "description": "Opciones para crear un proyecto nuevo",
+          "code": "$ ng new mi-app                         # crea proyecto nuevo\n$ ng new mi-app --standalone            # sin NgModules (default en v17+)\n$ ng new mi-app --routing               # incluye módulo de rutas\n$ ng new mi-app --style=scss            # css | scss | sass | less\n$ ng new mi-app --skip-install          # no instala dependencias aún\n$ ng new mi-app --package-manager=pnpm  # npm | yarn | pnpm\n$ cd mi-app"
+        }
+      ]
+    },
+    {
+      "id": "servir",
+      "title": "Servidor de desarrollo",
+      "description": "Levanta la app localmente con recarga automática.",
+      "commands": [
+        {
+          "id": "servir-1",
+          "title": "ng serve",
+          "description": "Opciones del servidor local",
+          "code": "$ ng serve                     # http://localhost:4200\n$ ng serve --open              # abre navegador automáticamente (-o)\n$ ng serve --port 4300         # cambia el puerto\n$ ng serve --host 0.0.0.0      # accesible desde la red local\n$ ng serve --configuration=development"
+        }
+      ]
+    },
+    {
+      "id": "generate",
+      "title": "ng generate — schematics",
+      "description": "Crea piezas de código automáticamente. Alias corto: ng g",
+      "commands": [
+        { "id": "gen-component", "title": "Componente", "description": "", "code": "$ ng g component nombre\n$ ng g c nombre" },
+        { "id": "gen-service", "title": "Servicio", "description": "", "code": "$ ng g service nombre\n$ ng g s nombre" },
+        { "id": "gen-module", "title": "Módulo", "description": "", "code": "$ ng g module nombre\n$ ng g m nombre" },
+        { "id": "gen-directive", "title": "Directiva", "description": "", "code": "$ ng g directive nombre\n$ ng g d nombre" },
+        { "id": "gen-pipe", "title": "Pipe", "description": "", "code": "$ ng g pipe nombre\n$ ng g p nombre" },
+        { "id": "gen-interface", "title": "Interfaz", "description": "", "code": "$ ng g interface nombre\n$ ng g i nombre" },
+        { "id": "gen-class", "title": "Clase", "description": "", "code": "$ ng g class nombre" },
+        { "id": "gen-enum", "title": "Enum", "description": "", "code": "$ ng g enum nombre" },
+        { "id": "gen-guard", "title": "Guard (rutas)", "description": "", "code": "$ ng g guard nombre" },
+        { "id": "gen-resolver", "title": "Resolver", "description": "", "code": "$ ng g resolver nombre" },
+        { "id": "gen-interceptor", "title": "Interceptor (HTTP)", "description": "", "code": "$ ng g interceptor nombre" },
+        { "id": "gen-worker", "title": "Web Worker", "description": "", "code": "$ ng g web-worker nombre" },
+        {
+          "id": "gen-flags",
+          "title": "Flags útiles para ng g component",
+          "description": "",
+          "code": "$ ng g c nombre --standalone        # componente standalone\n$ ng g c nombre --skip-tests        # sin archivo .spec.ts\n$ ng g c nombre --inline-style      # CSS dentro del .ts\n$ ng g c nombre --inline-template   # HTML dentro del .ts\n$ ng g c carpeta/nombre             # dentro de subcarpeta\n$ ng g c nombre --flat              # sin carpeta propia\n$ ng g c nombre --dry-run           # simula sin crear archivos"
+        }
+      ]
+    },
+    {
+      "id": "build",
+      "title": "Build (compilación)",
+      "description": "Genera los archivos estáticos listos para producción en dist/.",
+      "commands": [
+        {
+          "id": "build-1",
+          "title": "ng build",
+          "description": "",
+          "code": "$ ng build                                  # build por defecto\n$ ng build --configuration production      # build optimizado (-c production)\n$ ng build --output-path dist/mi-carpeta   # cambia carpeta de salida\n$ ng build --watch                         # reconstruye al detectar cambios\n$ ng build --base-href /subruta/           # para deploy en subcarpeta\n$ ng build --stats-json                    # genera stats.json (analizar bundle)"
+        }
+      ]
+    },
+    {
+      "id": "test",
+      "title": "Test y Lint",
+      "description": "Pruebas unitarias, end-to-end y análisis estático de código.",
+      "commands": [
+        {
+          "id": "test-1",
+          "title": "Comandos de testing",
+          "description": "",
+          "code": "$ ng test                      # pruebas unitarias (Karma/Jest)\n$ ng test --watch=false        # corre una sola vez (CI)\n$ ng test --code-coverage     # reporte de cobertura\n$ ng e2e                       # pruebas end-to-end\n$ ng lint                      # análisis estático (ESLint)"
+        }
+      ]
+    },
+    {
+      "id": "deploy",
+      "title": "Deploy",
+      "description": "Publica tu app directamente desde el CLI (requiere un builder de deploy instalado, ej. Firebase, Vercel, GitHub Pages, Netlify).",
+      "commands": [
+        {
+          "id": "deploy-1",
+          "title": "ng deploy",
+          "description": "",
+          "code": "$ ng add angular-cli-ghpages   # agrega soporte GitHub Pages\n$ ng deploy                    # ejecuta el deploy configurado"
+        }
+      ]
+    },
+    {
+      "id": "add",
+      "title": "ng add — agregar librerías",
+      "description": "Instala y configura automáticamente paquetes compatibles con Angular Schematics.",
+      "commands": [
+        {
+          "id": "add-1",
+          "title": "Paquetes comunes",
+          "description": "",
+          "code": "$ ng add @angular/material     # Angular Material (UI)\n$ ng add @angular/pwa          # convierte en Progressive Web App\n$ ng add @angular/localize     # internacionalización (i18n)\n$ ng add @ngrx/store            # manejo de estado (NgRx)\n$ ng add @angular/fire          # integración con Firebase\n$ npm install bootstrap        # librerías sin schematic (manual)"
+        }
+      ]
+    },
+    {
+      "id": "update",
+      "title": "ng update — actualizar versiones",
+      "description": "",
+      "commands": [
+        {
+          "id": "update-1",
+          "title": "Comandos de actualización",
+          "description": "Revisa siempre update.angular.io para saltos de versión mayor (ej. v16 → v18)",
+          "code": "$ ng update                              # muestra qué se puede actualizar\n$ ng update @angular/core @angular/cli  # actualiza el core\n$ ng update @angular/material            # actualiza Material\n$ ng update --all                        # actualiza todo lo posible"
+        }
+      ]
+    },
+    {
+      "id": "migraciones",
+      "title": "Migraciones a sintaxis moderna",
+      "description": "Convierten automáticamente código antiguo (NgModules, *ngIf/*ngFor, decoradores) a las nuevas APIs de Angular.",
+      "commands": [
+        { "id": "mig-control-flow", "title": "Control Flow — @if / @for / @switch", "description": "Reemplaza *ngIf, *ngFor y *ngSwitch por la sintaxis nativa del template.", "code": "$ ng generate @angular/core:control-flow" },
+        { "id": "mig-standalone", "title": "Standalone components", "description": "Elimina NgModules y convierte componentes/directivas/pipes a standalone.", "code": "$ ng generate @angular/core:standalone\n$ ng generate @angular/core:standalone --mode=prune  # limpia módulos vacíos" },
+        { "id": "mig-signal-input", "title": "Signal Inputs", "description": "Convierte @Input() a la función input().", "code": "$ ng generate @angular/core:signal-input-migration" },
+        { "id": "mig-signal-queries", "title": "Signal Queries", "description": "Migra @ViewChild, @ViewChildren, @ContentChild y @ContentChildren a signals.", "code": "$ ng generate @angular/core:signal-queries-migration" },
+        { "id": "mig-output", "title": "Output Migration", "description": "Convierte @Output() a la función output().", "code": "$ ng generate @angular/core:output-migration" },
+        { "id": "mig-inject", "title": "inject() en lugar de constructor", "description": "Migra inyección de dependencias por constructor a la función inject().", "code": "$ ng generate @angular/core:inject-migration" }
+      ]
+    },
+    {
+      "id": "config",
+      "title": "Configuración y workspace",
+      "description": "",
+      "commands": [
+        {
+          "id": "config-1",
+          "title": "Comandos de configuración",
+          "description": "",
+          "code": "$ ng config                                                                    # ver toda la config (angular.json)\n$ ng config schematics.@schematics/angular.component.style scss              # cambiar valor por defecto\n$ ng doc [término]                                                            # abre la documentación oficial\n$ ng analytics                                                                # activa/desactiva analíticas del CLI\n$ ng cache                                                                    # administra la caché de build local\n$ ng cache clean                                                              # limpia la caché de compilación"
+        }
+      ]
+    },
+    {
+      "id": "utilidades",
+      "title": "Utilidades varias",
+      "description": "",
+      "commands": [
+        {
+          "id": "util-1",
+          "title": "Comandos de ayuda",
+          "description": "",
+          "code": "$ ng help                       # lista todos los comandos disponibles\n$ ng generate --help            # lista todos los schematics disponibles\n$ ng version / ng v             # muestra versión de Angular, CLI y dependencias\n$ ng new --help                 # ver todas las opciones al crear proyecto\n$ ng g component --dry-run      # simula un comando sin crear/modificar archivos\n$ ng completion                 # configura autocompletado de comandos en la terminal"
+        }
+      ]
+    }
+  ]
+}

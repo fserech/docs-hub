@@ -1,0 +1,124 @@
+{
+  "id": "ionic",
+  "name": "Ionic",
+  "icon": "ionic",
+  "color": "#3880ff",
+  "sections": [
+    {
+      "id": "instalacion",
+      "title": "Instalación del CLI",
+      "description": "",
+      "commands": [
+        {
+          "id": "install-1",
+          "title": "Setup inicial",
+          "description": "",
+          "code": "$ npm install -g @ionic/cli        # instala el CLI global\n$ ionic --version                  # verifica instalación\n$ ionic login                      # (opcional) cuenta de Ionic"
+        }
+      ]
+    },
+    {
+      "id": "proyecto",
+      "title": "Crear un proyecto",
+      "description": "",
+      "commands": [
+        {
+          "id": "proyecto-1",
+          "title": "ionic start",
+          "description": "",
+          "code": "$ ionic start mi-app tabs --type=angular       # plantilla de tabs\n$ ionic start mi-app blank --type=angular      # plantilla en blanco\n$ ionic start mi-app sidemenu --type=angular   # plantilla con menú lateral\n$ ionic start mi-app tabs --type=angular --standalone  # componentes standalone\n$ ionic start mi-app tabs --capacitor          # incluye Capacitor desde el inicio"
+        }
+      ]
+    },
+    {
+      "id": "servir",
+      "title": "Servidor de desarrollo",
+      "description": "",
+      "commands": [
+        {
+          "id": "servir-1",
+          "title": "ionic serve",
+          "description": "",
+          "code": "$ ionic serve                  # http://localhost:8100\n$ ionic serve --lab            # vista lado a lado iOS/Android\n$ ionic serve --port 8200      # cambia el puerto"
+        }
+      ]
+    },
+    {
+      "id": "generate",
+      "title": "Generar código",
+      "description": "",
+      "commands": [
+        {
+          "id": "gen-1",
+          "title": "ionic generate",
+          "description": "",
+          "code": "$ ionic generate page nombre         # crea una página\n$ ionic generate component nombre    # crea un componente\n$ ionic generate service nombre      # crea un servicio\n$ ionic generate guard nombre        # crea un guard de rutas"
+        }
+      ]
+    },
+    {
+      "id": "capacitor",
+      "title": "Capacitor — nativo",
+      "description": "Empaqueta la app web como aplicación nativa iOS/Android.",
+      "commands": [
+        {
+          "id": "cap-1",
+          "title": "Agregar plataformas",
+          "description": "",
+          "code": "$ npm install @capacitor/core @capacitor/cli\n$ npx cap init                      # inicializa Capacitor\n$ npm install @capacitor/android @capacitor/ios\n$ npx cap add android               # agrega proyecto Android\n$ npx cap add ios                   # agrega proyecto iOS"
+        },
+        {
+          "id": "cap-2",
+          "title": "Sincronizar y abrir",
+          "description": "",
+          "code": "$ ionic build                        # compila la app web\n$ npx cap sync                       # copia web + actualiza plugins nativos\n$ npx cap copy                       # solo copia el build web (sin actualizar plugins)\n$ npx cap open android               # abre Android Studio\n$ npx cap open ios                   # abre Xcode\n$ npx cap run android                # build + deploy en dispositivo/emulador\n$ npx cap run ios"
+        },
+        {
+          "id": "cap-3",
+          "title": "Plugins comunes",
+          "description": "",
+          "code": "$ npm install @capacitor/camera\n$ npm install @capacitor/geolocation\n$ npm install @capacitor/push-notifications\n$ npm install @capacitor/preferences      # almacenamiento clave-valor\n$ npm install @capacitor/splash-screen\n$ npm install @capacitor/status-bar\n\n// tras instalar cualquier plugin nativo:\n$ npx cap sync"
+        }
+      ]
+    },
+    {
+      "id": "build",
+      "title": "Build de producción",
+      "description": "",
+      "commands": [
+        {
+          "id": "build-1",
+          "title": "Compilar para producción",
+          "description": "",
+          "code": "$ ionic build --prod                # build optimizado\n$ ionic capacitor build android      # build + apk/aab\n$ ionic capacitor build ios          # build + proyecto Xcode listo para archivar"
+        }
+      ]
+    },
+    {
+      "id": "componentes",
+      "title": "Componentes UI comunes",
+      "description": "Elementos típicos de Ionic (standalone).",
+      "commands": [
+        {
+          "id": "comp-1",
+          "title": "Imports standalone",
+          "description": "",
+          "code": "import {\n  IonHeader, IonToolbar, IonTitle, IonContent,\n  IonButton, IonList, IonItem, IonInput\n} from '@ionic/angular/standalone';\n\n@Component({\n  standalone: true,\n  imports: [IonHeader, IonToolbar, IonTitle, IonContent, IonButton, IonList, IonItem, IonInput],\n  templateUrl: './pagina.html'\n})\nexport class Pagina {}"
+        }
+      ]
+    },
+    {
+      "id": "deploy",
+      "title": "Deploy (Ionic Appflow / stores)",
+      "description": "",
+      "commands": [
+        {
+          "id": "deploy-1",
+          "title": "Publicación",
+          "description": "",
+          "code": "$ ionic deploy build                  # build en la nube (Appflow)\n$ ionic deploy manifest               # genera manifest de deploy live\n\n# Android: sube el .aab generado en android/app/build/outputs/ a Play Console\n# iOS: archiva desde Xcode y sube a App Store Connect"
+        }
+      ]
+    }
+  ]
+}

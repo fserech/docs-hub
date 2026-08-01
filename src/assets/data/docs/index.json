@@ -1,0 +1,10 @@
+[
+  { "id": "angular" },
+  { "id": "ionic" },
+  { "id": "git" },
+  { "id": "docker" },
+  { "id": "linux" },
+  { "id": "vercel" },
+  { "id": "supabase" },
+  { "id": "firebase" }
+]
