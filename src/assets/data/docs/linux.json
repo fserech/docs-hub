@@ -1,0 +1,118 @@
+{
+  "id": "linux",
+  "name": "Linux",
+  "icon": "linux",
+  "color": "#fcc624",
+  "sections": [
+    {
+      "id": "navegacion",
+      "title": "Navegación de archivos",
+      "description": "Moverte por el sistema de archivos y crear/borrar/copiar desde la terminal.",
+      "commands": [
+        {
+          "id": "nav-1",
+          "title": "Comandos básicos",
+          "description": "",
+          "code": "$ pwd                       # directorio actual\n$ ls -la                    # lista todo, formato largo\n$ cd carpeta                # cambia de directorio\n$ cd ..                     # sube un nivel\n$ cd ~                      # va al home\n$ mkdir carpeta              # crea carpeta\n$ mkdir -p a/b/c              # crea carpetas anidadas\n$ rm archivo                 # elimina archivo\n$ rm -rf carpeta              # elimina carpeta recursivamente (¡cuidado!)\n$ cp origen destino           # copia archivo/carpeta (-r para carpetas)\n$ mv origen destino           # mueve o renombra\n$ touch archivo.txt           # crea archivo vacío / actualiza fecha"
+        }
+      ]
+    },
+    {
+      "id": "permisos",
+      "title": "Permisos y propietarios",
+      "description": "Quién puede leer, escribir o ejecutar un archivo — clave al desplegar en servidores.",
+      "commands": [
+        {
+          "id": "perm-1",
+          "title": "chmod / chown",
+          "description": "",
+          "code": "$ chmod 755 archivo         # rwxr-xr-x\n$ chmod +x script.sh        # agrega permiso de ejecución\n$ chmod -R 755 carpeta       # aplica recursivamente\n$ chown usuario:grupo archivo\n$ chown -R usuario:grupo carpeta\n$ ls -l                      # ver permisos actuales"
+        }
+      ]
+    },
+    {
+      "id": "procesos",
+      "title": "Procesos",
+      "description": "Ver qué está corriendo, cuánto consume, y detener lo que se cuelga.",
+      "commands": [
+        {
+          "id": "proc-1",
+          "title": "Gestión de procesos",
+          "description": "",
+          "code": "$ ps aux                    # lista todos los procesos\n$ top                       # monitor interactivo de procesos\n$ htop                      # versión mejorada de top (requiere instalación)\n$ kill <pid>                 # termina proceso\n$ kill -9 <pid>              # fuerza terminación\n$ pkill nombre               # mata por nombre de proceso\n$ jobs                       # procesos en segundo plano de la shell\n$ comando &                  # ejecuta en segundo plano\n$ nohup comando &            # ejecuta sin colgar al cerrar sesión"
+        }
+      ]
+    },
+    {
+      "id": "busqueda",
+      "title": "Búsqueda de texto y archivos",
+      "description": "Encontrar texto dentro de archivos o archivos por nombre/fecha en todo el sistema.",
+      "commands": [
+        {
+          "id": "busq-1",
+          "title": "grep / find",
+          "description": "",
+          "code": "$ grep \"patron\" archivo.txt          # busca texto en un archivo\n$ grep -r \"patron\" carpeta/           # búsqueda recursiva\n$ grep -i \"patron\" archivo.txt        # sin distinguir mayúsculas\n$ grep -n \"patron\" archivo.txt        # muestra número de línea\n$ find . -name \"*.ts\"                 # busca archivos por nombre\n$ find . -type d -name \"node_modules\" # busca directorios\n$ find . -mtime -1                    # modificados en el último día"
+        }
+      ]
+    },
+    {
+      "id": "red",
+      "title": "Red",
+      "description": "Diagnosticar conectividad, probar endpoints y transferir archivos entre máquinas.",
+      "commands": [
+        {
+          "id": "red-1",
+          "title": "Diagnóstico de red",
+          "description": "",
+          "code": "$ ping host                 # prueba conectividad\n$ curl -I https://sitio.com  # headers HTTP\n$ curl -o out.html https://sitio.com  # descarga contenido\n$ wget https://sitio.com/archivo.zip  # descarga archivo\n$ ss -tulpn                  # puertos abiertos y procesos (moderno)\n$ netstat -tulpn             # puertos abiertos (clásico)\n$ ip a                       # interfaces de red\n$ dig dominio.com             # consulta DNS\n$ nslookup dominio.com        # consulta DNS (alternativo)\n$ ssh usuario@host           # conexión remota\n$ scp archivo usuario@host:/ruta  # copia por SSH"
+        }
+      ]
+    },
+    {
+      "id": "paquetes",
+      "title": "Gestión de paquetes",
+      "description": "Instalar y actualizar software del sistema según tu distribución.",
+      "commands": [
+        {
+          "id": "pkg-1",
+          "title": "APT (Debian/Ubuntu)",
+          "description": "",
+          "code": "$ sudo apt update                    # actualiza índice de paquetes\n$ sudo apt upgrade                   # actualiza paquetes instalados\n$ sudo apt install paquete           # instala paquete\n$ sudo apt remove paquete            # desinstala paquete\n$ sudo apt autoremove                # elimina dependencias huérfanas\n$ apt search termino                 # busca paquetes"
+        },
+        {
+          "id": "pkg-2",
+          "title": "YUM/DNF (RHEL/CentOS/Fedora)",
+          "description": "",
+          "code": "$ sudo dnf update                    # actualiza sistema\n$ sudo dnf install paquete           # instala paquete\n$ sudo dnf remove paquete            # desinstala paquete"
+        }
+      ]
+    },
+    {
+      "id": "sistema",
+      "title": "Información del sistema",
+      "description": "Estado general de la máquina: disco, memoria, servicios y logs.",
+      "commands": [
+        {
+          "id": "sys-1",
+          "title": "Diagnóstico y recursos",
+          "description": "",
+          "code": "$ df -h                      # espacio en disco\n$ du -sh carpeta              # tamaño de una carpeta\n$ free -h                     # memoria RAM disponible\n$ uname -a                    # info del kernel\n$ uptime                      # tiempo encendido / carga del sistema\n$ whoami                      # usuario actual\n$ history                     # historial de comandos\n$ systemctl status servicio   # estado de un servicio (systemd)\n$ systemctl restart servicio  # reinicia servicio\n$ journalctl -u servicio -f   # logs de un servicio en tiempo real"
+        }
+      ]
+    },
+    {
+      "id": "redirecciones",
+      "title": "Redirecciones y pipes",
+      "description": "Encadenar comandos y controlar hacia dónde va su salida (archivo, pantalla o el siguiente comando).",
+      "commands": [
+        {
+          "id": "redir-1",
+          "title": "Operadores útiles",
+          "description": "",
+          "code": "$ comando > archivo          # redirige salida (sobrescribe)\n$ comando >> archivo         # redirige salida (agrega)\n$ comando1 | comando2        # pipe: salida de 1 como entrada de 2\n$ comando 2> errores.log     # redirige solo errores\n$ comando &> todo.log        # redirige salida y errores\n$ cat archivo | grep patron | wc -l  # encadenar varios comandos"
+        }
+      ]
+    }
+  ]
+}

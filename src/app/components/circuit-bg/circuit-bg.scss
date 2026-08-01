@@ -1,0 +1,32 @@
+:host {
+  display: block;
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+
+  --c-bg:        #131a2c;
+  --c-primary:   #4d7ef7;
+  --c-secondary: #5f8bf5;
+  --c-accent:    #9b6bf8;
+  --c-flow:      #2eb3d1;
+  --c-node:      #6f9cf7;
+  --c-node-glow: #5f8bf5;
+  --c-core-fill: #1a2c56;
+  --c-core-line: #4d7ef7;
+  --c-core-glow: #6f9cf7;
+  --c-dot:       #4d7ef7;
+  --c-vig-1:     #1a2740;
+  --c-vig-2:     #101a2e;
+  --c-vig-3:     #0b1220;
+}
+
+svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  opacity: 0.62;
+  filter: drop-shadow(0 0 2px var(--c-primary)) drop-shadow(0 0 6px rgba(77, 126, 247, 0.25));
+}

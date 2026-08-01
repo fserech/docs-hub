@@ -1,0 +1,144 @@
+{
+  "id": "git",
+  "name": "Git",
+  "icon": "git",
+  "color": "#f05033",
+  "sections": [
+    {
+      "id": "config",
+      "title": "Configuración inicial",
+      "description": "Se hace una sola vez por máquina: le dice a Git quién eres para firmar tus commits.",
+      "commands": [
+        {
+          "id": "config-1",
+          "title": "Identidad",
+          "description": "",
+          "code": "$ git config --global user.name \"Tu Nombre\"\n$ git config --global user.email \"tu@email.com\"\n$ git config --global init.defaultBranch main\n$ git config --list                        # ver toda la config\n$ git config --global core.editor \"code --wait\"  # editor por defecto"
+        }
+      ]
+    },
+    {
+      "id": "inicio",
+      "title": "Iniciar / clonar",
+      "description": "Dos puntos de partida: convertir una carpeta local en repositorio, o descargar uno que ya existe en remoto.",
+      "commands": [
+        {
+          "id": "inicio-1",
+          "title": "Repositorio local",
+          "description": "",
+          "code": "$ git init                         # crea repo nuevo\n$ git clone <url>                  # clona repo remoto\n$ git clone <url> carpeta          # clona en carpeta específica\n$ git clone --depth 1 <url>        # clona solo el último commit (shallow)"
+        }
+      ]
+    },
+    {
+      "id": "estado",
+      "title": "Estado y cambios",
+      "description": "Para revisar qué cambió antes de confirmar nada — el primer comando que corres siempre.",
+      "commands": [
+        {
+          "id": "estado-1",
+          "title": "Inspección",
+          "description": "",
+          "code": "$ git status                       # estado del working directory\n$ git diff                         # cambios sin stage\n$ git diff --staged                # cambios en stage\n$ git log                          # historial de commits\n$ git log --oneline --graph --all  # historial compacto y visual"
+        }
+      ]
+    },
+    {
+      "id": "stage-commit",
+      "title": "Stage y commit",
+      "description": "Preparar (stage) los cambios que quieres guardar y confirmarlos como un punto en el historial.",
+      "commands": [
+        {
+          "id": "stage-1",
+          "title": "Agregar y confirmar cambios",
+          "description": "",
+          "code": "$ git add archivo.ts               # agrega un archivo\n$ git add .                        # agrega todo lo modificado\n$ git add -p                       # agrega por fragmentos (interactivo)\n$ git commit -m \"mensaje\"          # confirma cambios\n$ git commit -am \"mensaje\"         # add + commit (solo archivos ya rastreados)\n$ git commit --amend               # modifica el último commit"
+        }
+      ]
+    },
+    {
+      "id": "ramas",
+      "title": "Ramas (branches)",
+      "description": "Para trabajar en una funcionalidad o fix sin afectar la rama principal (main) hasta que esté lista.",
+      "commands": [
+        {
+          "id": "ramas-1",
+          "title": "Crear y cambiar de rama",
+          "description": "",
+          "code": "$ git branch                       # lista ramas locales\n$ git branch nombre                # crea rama nueva\n$ git checkout nombre               # cambia de rama\n$ git checkout -b nombre            # crea y cambia en un paso\n$ git switch nombre                 # cambia de rama (moderno)\n$ git switch -c nombre              # crea y cambia (moderno)\n$ git branch -d nombre              # elimina rama (segura)\n$ git branch -D nombre              # elimina rama (forzado)\n$ git branch -m nuevo-nombre        # renombra rama actual"
+        }
+      ]
+    },
+    {
+      "id": "merge-rebase",
+      "title": "Merge y rebase",
+      "description": "Dos formas de traer los cambios de una rama a otra: merge conserva el historial tal cual, rebase lo reescribe para que quede lineal.",
+      "commands": [
+        {
+          "id": "merge-1",
+          "title": "Combinar ramas",
+          "description": "",
+          "code": "$ git merge nombre-rama            # fusiona rama en la actual\n$ git merge --no-ff nombre-rama    # fusiona creando commit de merge\n$ git rebase main                  # reaplica commits sobre main\n$ git rebase -i HEAD~3             # rebase interactivo (últimos 3 commits)\n$ git rebase --continue            # continúa tras resolver conflictos\n$ git rebase --abort               # cancela el rebase"
+        }
+      ]
+    },
+    {
+      "id": "remoto",
+      "title": "Remotos",
+      "description": "Conectar tu carpeta local con GitHub/GitLab. Cubre los dos casos típicos: subir un proyecto local a un repo que acabas de crear vacío, y sincronizar cambios con uno que ya existe.",
+      "commands": [
+        {
+          "id": "remoto-1",
+          "title": "Subir un proyecto local a un repositorio ya creado (vacío)",
+          "description": "Cuando ya creaste el repo en GitHub (sin README) y quieres subir por primera vez tu carpeta local.",
+          "code": "$ git init                            # si la carpeta aún no es un repo\n$ git add .\n$ git commit -m \"Primer commit\"\n$ git remote add origin <url-del-repo>\n$ git branch -M main\n$ git push -u origin main             # sube y deja \"main\" enlazada al remoto"
+        },
+        {
+          "id": "remoto-2",
+          "title": "Trabajar con un remoto existente",
+          "description": "Una vez ya está enlazado (git remote add hecho), el día a día es más corto.",
+          "code": "$ git remote -v                    # lista remotos\n$ git push origin main             # sube cambios\n$ git push --force-with-lease      # fuerza push de forma segura\n$ git pull origin main             # trae y fusiona cambios\n$ git fetch                        # trae cambios sin fusionar"
+        }
+      ]
+    },
+    {
+      "id": "deshacer",
+      "title": "Deshacer cambios",
+      "description": "Formas seguras (y una destructiva) de revertir lo que hiciste, según qué tan lejos quieras retroceder.",
+      "commands": [
+        {
+          "id": "deshacer-1",
+          "title": "Revertir, resetear, stash",
+          "description": "",
+          "code": "$ git restore archivo.ts           # descarta cambios sin stage\n$ git restore --staged archivo.ts  # saca del stage\n$ git reset --soft HEAD~1          # deshace commit, conserva cambios en stage\n$ git reset --mixed HEAD~1         # deshace commit y stage (default)\n$ git reset --hard HEAD~1          # deshace commit y descarta cambios (¡destructivo!)\n$ git revert <hash>                # crea commit inverso (seguro para historial compartido)\n$ git stash                        # guarda cambios temporalmente\n$ git stash pop                    # recupera último stash\n$ git stash list                   # lista stashes guardados"
+        }
+      ]
+    },
+    {
+      "id": "tags",
+      "title": "Tags",
+      "description": "Marcar un commit específico como una versión (v1.0.0, v2.1.0...), útil para releases.",
+      "commands": [
+        {
+          "id": "tags-1",
+          "title": "Etiquetas de versión",
+          "description": "",
+          "code": "$ git tag v1.0.0                   # crea tag ligero\n$ git tag -a v1.0.0 -m \"mensaje\"   # crea tag anotado\n$ git push origin v1.0.0           # sube un tag\n$ git push origin --tags           # sube todos los tags"
+        }
+      ]
+    },
+    {
+      "id": "utilidades",
+      "title": "Utilidades",
+      "description": "Comandos sueltos que se usan menos seguido pero salvan el día cuando los necesitas.",
+      "commands": [
+        {
+          "id": "util-1",
+          "title": "Otros comandos útiles",
+          "description": "",
+          "code": "$ git show <hash>                  # muestra detalle de un commit\n$ git blame archivo.ts             # quién modificó cada línea\n$ git cherry-pick <hash>           # aplica un commit específico\n$ git clean -fd                    # elimina archivos no rastreados\n$ .gitignore                       # archivo para excluir archivos del control de versiones"
+        }
+      ]
+    }
+  ]
+}

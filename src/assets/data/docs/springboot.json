@@ -1,0 +1,111 @@
+{
+  "id": "springboot",
+  "name": "Spring Boot",
+  "icon": "springboot",
+  "color": "#6db33f",
+  "sections": [
+    {
+      "id": "inicio",
+      "title": "Crear un proyecto",
+      "description": "Spring Initializr genera el esqueleto con las dependencias que elijas (Web, JPA, Security, etc.) — vía web o CLI.",
+      "commands": [
+        {
+          "id": "inicio-1",
+          "title": "Con Spring CLI",
+          "description": "",
+          "code": "$ spring init --dependencies=web,data-jpa,postgresql,lombok mi-api\n$ cd mi-api\n\n# o desde https://start.spring.io eligiendo Maven/Gradle + dependencias"
+        },
+        {
+          "id": "inicio-2",
+          "title": "Estructura típica",
+          "description": "",
+          "code": "src/main/java/com/miapp/\n  ├── MiApiApplication.java     # clase principal (@SpringBootApplication)\n  ├── controller/                # endpoints REST\n  ├── service/                   # lógica de negocio\n  ├── repository/                # acceso a datos (interfaces JPA)\n  └── model/                     # entidades\nsrc/main/resources/\n  └── application.properties     # configuración"
+        }
+      ]
+    },
+    {
+      "id": "ejecutar",
+      "title": "Ejecutar y compilar",
+      "description": "",
+      "commands": [
+        {
+          "id": "ejecutar-1",
+          "title": "Maven",
+          "description": "",
+          "code": "$ ./mvnw spring-boot:run           # ejecuta en modo desarrollo\n$ ./mvnw clean package             # genera el .jar en target/\n$ java -jar target/mi-api-0.0.1.jar # corre el jar compilado\n$ ./mvnw test                      # corre las pruebas"
+        },
+        {
+          "id": "ejecutar-2",
+          "title": "Gradle",
+          "description": "",
+          "code": "$ ./gradlew bootRun                # ejecuta en modo desarrollo\n$ ./gradlew build                  # genera el .jar en build/libs/\n$ ./gradlew test                   # corre las pruebas"
+        }
+      ]
+    },
+    {
+      "id": "config",
+      "title": "application.properties",
+      "description": "Configuración del servidor, base de datos y perfiles de ambiente (dev, prod).",
+      "commands": [
+        {
+          "id": "config-1",
+          "title": "Conexión a PostgreSQL/MySQL",
+          "description": "",
+          "code": "server.port=8080\n\nspring.datasource.url=jdbc:postgresql://localhost:5432/midb\nspring.datasource.username=postgres\nspring.datasource.password=secret\n\nspring.jpa.hibernate.ddl-auto=update\nspring.jpa.show-sql=true\n\n# CORS para que Angular (localhost:4200) pueda consumir la API\nspring.web.cors.allowed-origins=http://localhost:4200"
+        }
+      ]
+    },
+    {
+      "id": "rest",
+      "title": "Controladores REST",
+      "description": "Exponer endpoints HTTP que tu frontend (Angular/Ionic) va a consumir.",
+      "commands": [
+        {
+          "id": "rest-1",
+          "title": "CRUD básico",
+          "description": "",
+          "code": "@RestController\n@RequestMapping(\"/api/productos\")\n@CrossOrigin(origins = \"http://localhost:4200\")\npublic class ProductoController {\n\n    @Autowired\n    private ProductoRepository repo;\n\n    @GetMapping\n    public List<Producto> listar() { return repo.findAll(); }\n\n    @GetMapping(\"/{id}\")\n    public Producto obtener(@PathVariable Long id) { return repo.findById(id).orElseThrow(); }\n\n    @PostMapping\n    public Producto crear(@RequestBody Producto p) { return repo.save(p); }\n\n    @PutMapping(\"/{id}\")\n    public Producto actualizar(@PathVariable Long id, @RequestBody Producto p) {\n        p.setId(id);\n        return repo.save(p);\n    }\n\n    @DeleteMapping(\"/{id}\")\n    public void eliminar(@PathVariable Long id) { repo.deleteById(id); }\n}"
+        }
+      ]
+    },
+    {
+      "id": "jpa",
+      "title": "Entidades y JPA",
+      "description": "Mapeo objeto-relacional: una clase Java se convierte en una tabla de base de datos.",
+      "commands": [
+        {
+          "id": "jpa-1",
+          "title": "Entidad y repositorio",
+          "description": "",
+          "code": "@Entity\npublic class Producto {\n    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)\n    private Long id;\n    private String nombre;\n    private Double precio;\n    // getters y setters (o usa Lombok @Data)\n}\n\npublic interface ProductoRepository extends JpaRepository<Producto, Long> {\n    List<Producto> findByNombreContaining(String nombre);\n}"
+        }
+      ]
+    },
+    {
+      "id": "seguridad",
+      "title": "Spring Security básico",
+      "description": "Proteger endpoints y manejar autenticación (JWT es lo típico al conectar con un frontend SPA).",
+      "commands": [
+        {
+          "id": "seguridad-1",
+          "title": "Configuración mínima",
+          "description": "",
+          "code": "@Configuration\n@EnableWebSecurity\npublic class SecurityConfig {\n\n    @Bean\n    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {\n        http\n          .csrf(csrf -> csrf.disable())\n          .authorizeHttpRequests(auth -> auth\n            .requestMatchers(\"/api/auth/**\").permitAll()\n            .anyRequest().authenticated()\n          );\n        return http.build();\n    }\n}"
+        }
+      ]
+    },
+    {
+      "id": "docker",
+      "title": "Empaquetar con Docker",
+      "description": "Llevar el .jar compilado a un contenedor listo para desplegar.",
+      "commands": [
+        {
+          "id": "docker-1",
+          "title": "Dockerfile",
+          "description": "",
+          "code": "FROM eclipse-temurin:21-jdk-alpine AS build\nWORKDIR /app\nCOPY . .\nRUN ./mvnw clean package -DskipTests\n\nFROM eclipse-temurin:21-jre-alpine\nWORKDIR /app\nCOPY --from=build /app/target/*.jar app.jar\nEXPOSE 8080\nENTRYPOINT [\"java\", \"-jar\", \"app.jar\"]"
+        }
+      ]
+    }
+  ]
+}

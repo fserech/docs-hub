@@ -1,0 +1,123 @@
+{
+  "id": "supabase",
+  "name": "Supabase",
+  "icon": "supabase",
+  "color": "#3ecf8e",
+  "sections": [
+    {
+      "id": "cli",
+      "title": "CLI — instalación y proyecto",
+      "description": "Herramienta de línea de comandos para levantar Supabase localmente con Docker y sincronizar con tu proyecto remoto.",
+      "commands": [
+        {
+          "id": "cli-1",
+          "title": "Setup inicial",
+          "description": "",
+          "code": "$ npm install -g supabase          # instala el CLI\n$ supabase login                   # autenticación\n$ supabase init                    # inicializa proyecto local\n$ supabase start                   # levanta stack local (Docker)\n$ supabase stop                    # detiene el stack local\n$ supabase status                  # muestra URLs y keys locales"
+        }
+      ]
+    },
+    {
+      "id": "link-deploy",
+      "title": "Vincular y desplegar",
+      "description": "Conectar tu carpeta local con el proyecto real en supabase.com y mantener ambos esquemas sincronizados.",
+      "commands": [
+        {
+          "id": "link-1",
+          "title": "Conectar con proyecto remoto",
+          "description": "",
+          "code": "$ supabase link --project-ref <ref>     # vincula al proyecto remoto\n$ supabase db push                       # aplica migraciones locales al remoto\n$ supabase db pull                       # trae el esquema remoto a local\n$ supabase db reset                      # reinicia DB local con migraciones + seed"
+        }
+      ]
+    },
+    {
+      "id": "migraciones",
+      "title": "Migraciones",
+      "description": "Cambios al esquema de la base de datos versionados como archivos SQL, igual que en Git.",
+      "commands": [
+        {
+          "id": "mig-1",
+          "title": "Gestión de migraciones SQL",
+          "description": "",
+          "code": "$ supabase migration new nombre_migracion   # crea archivo de migración\n$ supabase migration list                   # lista migraciones\n$ supabase migration up                     # aplica migraciones pendientes localmente"
+        }
+      ]
+    },
+    {
+      "id": "types",
+      "title": "Generar tipos TypeScript",
+      "description": "Evita desincronización entre tu base de datos y tu código: genera los tipos automáticamente desde el esquema.",
+      "commands": [
+        {
+          "id": "types-1",
+          "title": "Tipado automático desde el esquema",
+          "description": "",
+          "code": "$ supabase gen types typescript --local > types/database.types.ts\n$ supabase gen types typescript --project-id <ref> > types/database.types.ts"
+        }
+      ]
+    },
+    {
+      "id": "cliente-js",
+      "title": "Cliente JS/TS",
+      "description": "Uso del SDK en aplicaciones web.",
+      "commands": [
+        {
+          "id": "cliente-1",
+          "title": "Inicialización",
+          "description": "",
+          "code": "$ npm install @supabase/supabase-js\n\nimport { createClient } from '@supabase/supabase-js'\n\nconst supabase = createClient(\n  process.env.SUPABASE_URL!,\n  process.env.SUPABASE_ANON_KEY!\n)"
+        },
+        {
+          "id": "cliente-2",
+          "title": "Consultas básicas",
+          "description": "",
+          "code": "// SELECT\nconst { data, error } = await supabase\n  .from('tabla')\n  .select('*')\n  .eq('columna', valor)\n\n// INSERT\nawait supabase.from('tabla').insert({ campo: 'valor' })\n\n// UPDATE\nawait supabase.from('tabla').update({ campo: 'nuevo' }).eq('id', 1)\n\n// DELETE\nawait supabase.from('tabla').delete().eq('id', 1)"
+        },
+        {
+          "id": "cliente-3",
+          "title": "Autenticación",
+          "description": "",
+          "code": "// Registro\nawait supabase.auth.signUp({ email, password })\n\n// Login\nawait supabase.auth.signInWithPassword({ email, password })\n\n// Sesión actual\nconst { data: { session } } = await supabase.auth.getSession()\n\n// Logout\nawait supabase.auth.signOut()"
+        },
+        {
+          "id": "cliente-4",
+          "title": "Realtime",
+          "description": "",
+          "code": "supabase\n  .channel('cambios-tabla')\n  .on('postgres_changes', { event: '*', schema: 'public', table: 'tabla' },\n    (payload) => console.log(payload)\n  )\n  .subscribe()"
+        },
+        {
+          "id": "cliente-5",
+          "title": "Storage",
+          "description": "",
+          "code": "// Subir archivo\nawait supabase.storage.from('bucket').upload('ruta/archivo.png', file)\n\n// Obtener URL pública\nconst { data } = supabase.storage.from('bucket').getPublicUrl('ruta/archivo.png')\n\n// Descargar\nawait supabase.storage.from('bucket').download('ruta/archivo.png')"
+        }
+      ]
+    },
+    {
+      "id": "rls",
+      "title": "Row Level Security (RLS)",
+      "description": "Políticas de seguridad a nivel de fila en PostgreSQL.",
+      "commands": [
+        {
+          "id": "rls-1",
+          "title": "Ejemplo de política",
+          "description": "",
+          "code": "-- Habilitar RLS en la tabla\nALTER TABLE tabla ENABLE ROW LEVEL SECURITY;\n\n-- Permitir SELECT solo al dueño del registro\nCREATE POLICY \"select_own\" ON tabla\n  FOR SELECT USING (auth.uid() = user_id);\n\n-- Permitir INSERT autenticado\nCREATE POLICY \"insert_auth\" ON tabla\n  FOR INSERT WITH CHECK (auth.uid() = user_id);"
+        }
+      ]
+    },
+    {
+      "id": "edge-functions",
+      "title": "Edge Functions",
+      "description": "Funciones serverless en Deno que corren cerca de tus usuarios, ideales para lógica de backend ligera.",
+      "commands": [
+        {
+          "id": "edge-1",
+          "title": "Crear y desplegar",
+          "description": "",
+          "code": "$ supabase functions new mi-funcion       # crea función nueva\n$ supabase functions serve mi-funcion     # prueba local\n$ supabase functions deploy mi-funcion    # despliega a producción\n$ supabase secrets set CLAVE=valor        # variables de entorno para funciones"
+        }
+      ]
+    }
+  ]
+}

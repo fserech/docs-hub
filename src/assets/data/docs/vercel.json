@@ -1,0 +1,99 @@
+{
+  "id": "vercel",
+  "name": "Vercel",
+  "icon": "vercel",
+  "color": "#ffffff",
+  "sections": [
+    {
+      "id": "instalacion",
+      "title": "Instalación del CLI",
+      "description": "Herramienta de línea de comandos para desplegar y administrar proyectos desde tu terminal.",
+      "commands": [
+        {
+          "id": "install-1",
+          "title": "Instalar y autenticar",
+          "description": "",
+          "code": "$ npm install -g vercel      # instala el CLI global\n$ vercel login               # inicia sesión\n$ vercel whoami               # verifica sesión activa"
+        }
+      ]
+    },
+    {
+      "id": "deploy",
+      "title": "Deploy",
+      "description": "Subir tu proyecto a un preview o directo a producción.",
+      "commands": [
+        {
+          "id": "deploy-1",
+          "title": "Comandos de despliegue",
+          "description": "",
+          "code": "$ vercel                      # deploy de preview (rama actual)\n$ vercel --prod               # deploy a producción\n$ vercel deploy --prebuilt    # usa un build ya generado (vercel build)\n$ vercel build                # genera el build localmente sin desplegar\n$ vercel rollback              # revierte al deploy anterior"
+        }
+      ]
+    },
+    {
+      "id": "proyectos",
+      "title": "Proyectos",
+      "description": "Vincular una carpeta local a un proyecto de Vercel y administrar sus deployments.",
+      "commands": [
+        {
+          "id": "proy-1",
+          "title": "Gestión de proyectos",
+          "description": "",
+          "code": "$ vercel link                 # vincula carpeta local a un proyecto\n$ vercel projects ls           # lista proyectos\n$ vercel projects rm nombre    # elimina un proyecto\n$ vercel ls                    # lista deployments del proyecto actual\n$ vercel inspect <url>         # detalle de un deployment\n$ vercel rm <deployment>       # elimina un deployment"
+        }
+      ]
+    },
+    {
+      "id": "env",
+      "title": "Variables de entorno",
+      "description": "Variables de entorno por ambiente (development, preview, production), sin exponerlas en el código.",
+      "commands": [
+        {
+          "id": "env-1",
+          "title": "Gestión de env vars",
+          "description": "",
+          "code": "$ vercel env add NOMBRE               # agrega variable (elige entorno)\n$ vercel env ls                       # lista variables\n$ vercel env rm NOMBRE                # elimina variable\n$ vercel env pull .env.local          # descarga variables a archivo local"
+        }
+      ]
+    },
+    {
+      "id": "dominios",
+      "title": "Dominios",
+      "description": "Conectar un dominio propio a tu proyecto desplegado.",
+      "commands": [
+        {
+          "id": "dom-1",
+          "title": "Gestión de dominios",
+          "description": "",
+          "code": "$ vercel domains add midominio.com    # agrega dominio\n$ vercel domains ls                   # lista dominios\n$ vercel domains inspect midominio.com  # detalle / configuración DNS\n$ vercel domains rm midominio.com     # elimina dominio"
+        }
+      ]
+    },
+    {
+      "id": "config",
+      "title": "vercel.json",
+      "description": "Configuración de rutas, builds y redirecciones.",
+      "commands": [
+        {
+          "id": "config-1",
+          "title": "Ejemplo de configuración (SPA Angular)",
+          "description": "",
+          "code": "{\n  \"rewrites\": [\n    { \"source\": \"/(.*)\", \"destination\": \"/index.html\" }\n  ],\n  \"headers\": [\n    {\n      \"source\": \"/(.*)\",\n      \"headers\": [\n        { \"key\": \"X-Content-Type-Options\", \"value\": \"nosniff\" }\n      ]\n    }\n  ]\n}"
+        }
+      ]
+    },
+    {
+      "id": "logs",
+      "title": "Logs y monitoreo",
+      "description": "Ver qué está pasando en producción o correr el proyecto localmente con funciones serverless/edge.",
+      "commands": [
+        {
+          "id": "logs-1",
+          "title": "Diagnóstico",
+          "description": "",
+          "code": "$ vercel logs <url>            # logs de un deployment\n$ vercel logs <url> --follow   # logs en tiempo real\n$ vercel dev                   # entorno de desarrollo local con edge/serverless functions"
+        }
+      ]
+    }
+  ]
+}

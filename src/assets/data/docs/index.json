@@ -1,0 +1,13 @@
+[
+  { "id": "angular" },
+  { "id": "ionic" },
+  { "id": "tailwind" },
+  { "id": "git" },
+  { "id": "docker" },
+  { "id": "linux" },
+  { "id": "springboot" },
+  { "id": "vercel" },
+  { "id": "supabase" },
+  { "id": "firebase" },
+  { "id": "stacks" }
+]

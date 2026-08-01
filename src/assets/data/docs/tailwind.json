@@ -1,0 +1,137 @@
+{
+  "id": "tailwind",
+  "name": "Tailwind CSS",
+  "icon": "tailwind",
+  "color": "#38bdf8",
+  "sections": [
+    {
+      "id": "instalacion",
+      "title": "Instalación",
+      "description": "Tailwind v4 simplificó la instalación: ya no requiere archivo de configuración obligatorio ni tailwind.config.js para empezar.",
+      "commands": [
+        {
+          "id": "install-1",
+          "title": "Angular / Vite / cualquier bundler moderno",
+          "description": "",
+          "code": "$ npm install tailwindcss @tailwindcss/postcss postcss\n\n// .postcssrc.json\n{\n  \"plugins\": {\n    \"@tailwindcss/postcss\": {}\n  }\n}"
+        },
+        {
+          "id": "install-2",
+          "title": "Importar en tus estilos globales",
+          "description": "",
+          "code": "/* styles.scss o styles.css */\n@import \"tailwindcss\";"
+        }
+      ]
+    },
+    {
+      "id": "theme",
+      "title": "Personalizar el tema (@theme)",
+      "description": "En v4 el tema se define directo en CSS con la directiva @theme, generando variables y utilidades automáticamente.",
+      "commands": [
+        {
+          "id": "theme-1",
+          "title": "Definir colores, fuentes y tokens",
+          "description": "",
+          "code": "@theme {\n  --color-bg: #0f1524;\n  --color-primary: #3b6fed;\n  --font-display: \"Inter\", sans-serif;\n  --breakpoint-3xl: 1920px;\n}\n\n/* genera automáticamente: bg-bg, text-primary, font-display, 3xl:... */"
+        }
+      ]
+    },
+    {
+      "id": "layout",
+      "title": "Layout — Flexbox y Grid",
+      "description": "",
+      "commands": [
+        {
+          "id": "layout-1",
+          "title": "Flexbox",
+          "description": "",
+          "code": "flex flex-col flex-row       /* dirección */\nitems-center justify-between /* alineación */\ngap-4                        /* espacio entre hijos */\nflex-1 flex-none shrink-0    /* crecimiento/tamaño */\nflex-wrap"
+        },
+        {
+          "id": "layout-2",
+          "title": "Grid",
+          "description": "",
+          "code": "grid grid-cols-3 grid-rows-2\ngrid-cols-[260px_1fr]         /* columnas con tamaño custom */\ncol-span-2 row-span-2\nplace-items-center\ngap-4 gap-x-6 gap-y-2"
+        }
+      ]
+    },
+    {
+      "id": "responsive",
+      "title": "Responsive design",
+      "description": "Mobile-first: la utilidad sin prefijo aplica a todos los tamaños, y los prefijos sobrescriben desde ese punto de quiebre hacia arriba.",
+      "commands": [
+        {
+          "id": "responsive-1",
+          "title": "Breakpoints por defecto",
+          "description": "",
+          "code": "sm:   640px\nmd:   768px\nlg:   1024px\nxl:   1280px\n2xl:  1536px\n\n<div class=\"text-sm md:text-base lg:text-lg\">...</div>\n<div class=\"hidden lg:block\">...</div>          <!-- solo visible en desktop -->\n<div class=\"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3\">...</div>"
+        }
+      ]
+    },
+    {
+      "id": "estados",
+      "title": "Estados e interactividad",
+      "description": "Modificadores para hover, focus, disabled, y estados de formularios, sin escribir una línea de CSS aparte.",
+      "commands": [
+        {
+          "id": "estados-1",
+          "title": "Pseudo-clases",
+          "description": "",
+          "code": "hover:bg-blue-600 focus:ring-2 active:scale-95\ndisabled:opacity-50 disabled:cursor-not-allowed\nfocus-visible:outline-2\ngroup-hover:text-white     /* reacciona al hover de un ancestro con class=\"group\" */\npeer-checked:block         /* reacciona al estado de un elemento hermano */"
+        }
+      ]
+    },
+    {
+      "id": "dark-mode",
+      "title": "Modo oscuro",
+      "description": "Por defecto usa la preferencia del sistema operativo; también puede forzarse con una clase.",
+      "commands": [
+        {
+          "id": "dark-1",
+          "title": "Uso básico",
+          "description": "",
+          "code": "<div class=\"bg-white dark:bg-gray-900 text-black dark:text-white\">...</div>\n\n/* Para alternar manualmente en vez de seguir el SO: */\n@custom-variant dark (&:where(.dark, .dark *));\n\n/* luego basta con agregar/quitar la clase \"dark\" al <html> */"
+        }
+      ]
+    },
+    {
+      "id": "directivas",
+      "title": "@apply y @layer",
+      "description": "Para reutilizar combinaciones de utilidades en componentes CSS tradicionales cuando el HTML se vuelve muy largo.",
+      "commands": [
+        {
+          "id": "directivas-1",
+          "title": "Ejemplo",
+          "description": "",
+          "code": "@layer components {\n  .btn-primary {\n    @apply px-4 py-2 rounded-md bg-red-600 text-white hover:bg-red-700 transition-colors;\n  }\n}\n\n<button class=\"btn-primary\">Guardar</button>"
+        }
+      ]
+    },
+    {
+      "id": "utilidades-comunes",
+      "title": "Utilidades más usadas",
+      "description": "Chuleta rápida de las clases que más se repiten en cualquier proyecto.",
+      "commands": [
+        {
+          "id": "util-1",
+          "title": "Espaciado, tipografía y bordes",
+          "description": "",
+          "code": "p-4 px-4 py-2 m-4 mx-auto           /* padding / margin */\nw-full h-screen max-w-4xl min-w-0   /* tamaño */\ntext-sm font-semibold tracking-tight leading-relaxed\nrounded-lg rounded-full border border-gray-200\nshadow-sm shadow-lg\ntruncate line-clamp-2                /* recorte de texto */\ntransition-all duration-200 ease-out /* animaciones */"
+        }
+      ]
+    },
+    {
+      "id": "cli",
+      "title": "CLI standalone (sin bundler)",
+      "description": "Útil para proyectos sin Node/Vite: compila un CSS final a partir de tus clases usadas.",
+      "commands": [
+        {
+          "id": "cli-1",
+          "title": "Build directo",
+          "description": "",
+          "code": "$ npm install -D tailwindcss @tailwindcss/cli\n$ npx @tailwindcss/cli -i entrada.css -o salida.css --watch"
+        }
+      ]
+    }
+  ]
+}
